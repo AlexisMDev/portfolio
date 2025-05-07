@@ -1,0 +1,20 @@
+# Étape 1 : Utilisation d'une image Node
+FROM node:22-slim
+
+# Étape 2 : Définition du répertoire de travail
+WORKDIR /app
+
+# Étape 3 : Copie des fichiers package.json et package-lock.json
+COPY package*.json ./
+
+# Étape 4 : Installation les dépendances
+RUN npm install
+
+# Étape 5 : Copie de tous les fichiers du projet
+COPY . .
+
+# Étape 6 : Exposition du port
+EXPOSE 4321
+
+# Étape 7 : Lancement de l'application
+CMD [ "npm", "run", "dev" ]
