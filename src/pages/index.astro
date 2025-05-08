@@ -3,6 +3,13 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="Accueil">
-	<h1 class="text-4xl font-bold">Bienvenue sur mon portfolio</h1>
-	<p class="mt-4">Je suis développeur web et voici mes projets, compétences et contacts.</p>
+	<section class="hero min-h-[80vh] bg-base-200 rounded-xl shadow-md">
+		<div class="hero-content text-center">
+			<div class="max-w-xl">
+				<h1 class="text-5xl font-bold">Salut, moi c'est <span class="text-primary">Alexis</span></h1>
+				<p class="py-6 text-lg">Développeur web passionné, spécialisé en frontend moderne et UI design.</p>
+				<a href="/projects" class="btn btn-primary">Voir mes projets</a>
+			</div>
+		</div>
+	</section>
 </MainLayout>
