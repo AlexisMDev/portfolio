@@ -1,0 +1,54 @@
+---
+import { getIconBySlug } from "../lib/simpleIcons";
+
+const techs = [
+	{ name: "Astro", slug: "astro" },
+	{ name: "React", slug: "react" },
+	{ name: "JavaScript", slug: "javascript" },
+	{ name: "TypeScript", slug: "typescript" },
+
+	{ name: "Tailwind CSS", slug: "tailwindcss" },
+	{ name: "DaisyUI", slug: "daisyui" },
+	{ name: "Bootstrap", slug: "bootstrap" },
+
+	{ name: "Node.js", slug: "nodejs" },
+	{ name: "Express", slug: "express" },
+	{ name: "PHP", slug: "php" },
+
+	{ name: "MySQL", slug: "mysql" },
+	{ name: "MariaDB", slug: "mariadb" },
+	{ name: "PostgreSQL", slug: "postgresql" },
+
+	{ name: "Git", slug: "git" },
+	{ name: "Docker", slug: "docker" },
+	{ name: "GitHub Actions", slug: "githubactions" },
+];
+
+const icons = techs.map((tech) => ({
+	...tech,
+	icon: getIconBySlug(tech.slug),
+}));
+---
+
+<div class="flex flex-wrap justify-center gap-6 py-8">
+	{
+		icons.map(
+			({ name, icon }) =>
+				icon && (
+					<div class="flex flex-col items-center space-y-2 w-20">
+						<svg
+							role="img"
+							viewBox="0 0 24 24"
+							fill={`#${icon.hex}`}
+							class="w-12 h-12"
+							aria-label={name}
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d={icon.path} />
+						</svg>
+						<span class="text-sm text-center">{name}</span>
+					</div>
+				)
+		)
+	}
+</div>
