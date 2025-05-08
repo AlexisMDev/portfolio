@@ -1,0 +1,111 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { getIconBySlug } from "../lib/simpleIcons";
+import { getPlaceholderImages } from "../utils/getPlaceholderImages";
+
+const projects = [
+	{
+		title: "Mon Portfolio",
+		description:
+			"Site personnel réalisé avec Astro, TailwindCSS et DaisyUI. Versionné avec Git et conteneurisé avec Docker.",
+		image: "",
+		techs: [
+			{ name: "Astro", slug: "astro" },
+			{ name: "TailwindCSS", slug: "tailwindcss" },
+			{ name: "DaisyUI", slug: "daisyui" },
+			{ name: "Docker", slug: "docker" },
+		],
+		links: {
+			github: "https://github.com/AlexisMDev/portfolio",
+			demo: "/",
+		},
+	},
+	{
+		title: "Mon Portfolio",
+		description:
+			"Site personnel réalisé avec Astro, TailwindCSS et DaisyUI. Versionné avec Git et conteneurisé avec Docker.",
+		image: "",
+		techs: [
+			{ name: "Astro", slug: "astro" },
+			{ name: "TailwindCSS", slug: "tailwindcss" },
+			{ name: "DaisyUI", slug: "daisyui" },
+			{ name: "Docker", slug: "docker" },
+		],
+		links: {
+			github: "https://github.com/AlexisMDev/portfolio",
+			demo: "/",
+		},
+	},
+	{
+		title: "Mon Portfolio",
+		description:
+			"Site personnel réalisé avec Astro, TailwindCSS et DaisyUI. Versionné avec Git et conteneurisé avec Docker.",
+		image: "",
+		techs: [
+			{ name: "Astro", slug: "astro" },
+			{ name: "TailwindCSS", slug: "tailwindcss" },
+			{ name: "DaisyUI", slug: "daisyui" },
+			{ name: "Docker", slug: "docker" },
+		],
+		links: {
+			github: "https://github.com/AlexisMDev/portfolio",
+			demo: "/",
+		},
+	},
+];
+---
+
+<MainLayout>
+	<section class="px-6 py-12">
+		<h2 class="text-3xl font-bold mb-6 text-center">Mes projets</h2>
+		<div class="grid md:grid-cols-2 gap-8">
+			{
+				projects.map((project) => (
+					<div class="card bg-base-200 shadow-lg border border-base-300">
+						<figure>
+							<img src={project.image} alt={`aperçu de ${project.title}`} class="h-48 w-full object-cover" />
+						</figure>
+						<div class="card-body">
+							<h3 class="card-title text-xl">{project.title}</h3>
+							<p class="text-sm">{project.description}</p>
+
+							<div class="flex flex-wrap gap-4 mt-4">
+								{project.techs.map((tech) => {
+									const icon = getIconBySlug(tech.slug);
+									return icon ? (
+										<span class="tooltip" data-tip={tech.name}>
+											<svg
+												role="img"
+												viewBox="0 0 24 24"
+												fill={`#${icon.hex}`}
+												class="w-12 h-12"
+												aria-label={tech.name}
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path d={icon.path} />
+											</svg>
+										</span>
+									) : (
+										<span class="badge badge-outline">{tech.name}</span>
+									);
+								})}
+							</div>
+							<div class="mt-4 flex gap-4">
+								{project.links.github && (
+									<a href={project.links.github} target="_blank" class="btn btn-sm btn-outline">
+										Github
+									</a>
+								)}
+								{project.links.demo && (
+									<a href={project.links.demo} target="_blank" class="btn btn-sm btn-primary">
+										Démo
+									</a>
+								)}
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</section>
+</MainLayout>
