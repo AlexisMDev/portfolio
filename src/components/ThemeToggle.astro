@@ -1,0 +1,21 @@
+---
+
+---
+
+<script>
+	if (typeof window !== "undefined") {
+		const html = document.documentElement;
+		const currentTheme = localStorage.getItem("theme") || "cupcake";
+		html.setAttribute("data-theme", currentTheme);
+
+		const toggleTheme = () => {
+			const newTheme = html.getAttribute("data-theme") === "cupcake" ? "dark" : "cupcake";
+			html.setAttribute("data-theme", newTheme);
+			localStorage.setItem("theme", newTheme);
+		};
+
+		window.toggleTheme = toggleTheme;
+	}
+</script>
+
+<button class="btn btn-sm btn-ghost" aria-label="Toggle Theme" onclick="toggleTheme()">🌓</button>
