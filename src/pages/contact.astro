@@ -1,0 +1,57 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { getIconBySlug } from "../lib/simpleIcons";
+
+const contactLinks = [
+	{
+		label: "Github",
+		href: "https://github.com/AlexisMDev",
+		slug: "github",
+	},
+	{
+		label: "LinkedIn",
+		href: "https://www.linkedin.com/in/alexis-martin-556990144/",
+		slug: "linkedin",
+	},
+	{
+		label: "CV (PDF)",
+		href: "/cv.pdf",
+		slug: "file-pdf",
+	},
+	{
+		label: "Email",
+		href: "mailto:alexis.martin45@orange.fr",
+		slug: "mail",
+	},
+];
+---
+
+<MainLayout>
+	<section class="py-12 px-6 text-center">
+		<h2 class="text-3xl font-bold mb-6">Me contacter</h2>
+		<div class="flex justify-center flex-wrap gap-6">
+			{
+				contactLinks.map((link) => {
+					const icon = getIconBySlug(link.slug);
+					return (
+						<a href={link.href} target="_blank" class="btn btn-outline gap-2" rel="noopener noreferrer">
+							{icon && (
+								<svg
+									role="img"
+									viewBox="0 0 24 24"
+									fill={`#${icon.hex}`}
+									class="w-5 h-5 fill-current"
+									aria-label={link.label}
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path d={icon.path} />
+								</svg>
+							)}
+							{link.label}
+						</a>
+					);
+				})
+			}
+		</div>
+	</section>
+</MainLayout>
