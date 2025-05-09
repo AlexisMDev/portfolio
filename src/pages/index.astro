@@ -1,15 +1,22 @@
 ---
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Projects from "../components/Projects.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import TechStack from "../components/TechStack.astro";
+import CareerTimeline from "../components/CareerTimeline.astro";
 ---
 
-<MainLayout title="Accueil">
-	<section class="hero min-h-[80vh] bg-base-200 rounded-xl shadow-md">
-		<div class="hero-content text-center">
-			<div class="max-w-xl">
-				<h1 class="text-5xl font-bold">Salut, moi c'est <span class="text-primary">Alexis</span></h1>
-				<p class="py-6 text-lg">Développeur web passionné, spécialisé en frontend moderne et UI design.</p>
-				<a href="/projects" class="btn btn-primary">Voir mes projets</a>
-			</div>
-		</div>
-	</section>
+<MainLayout>
+	<main class="space-y-28 scroll-smooth">
+		<section id="home" class="min-h-screen flex items-center justify-center">
+			<h1 class="text-4xl font-bold">Bienvenue sur mon portfolio</h1>
+		</section>
+
+		<About />
+		<TechStack />
+		<CareerTimeline />
+		<Projects />
+		<Contact />
+	</main>
 </MainLayout>

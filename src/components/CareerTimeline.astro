@@ -16,21 +16,24 @@ const jobs = [
 ];
 ---
 
-<ul class="timeline timeline-vertical px-6 py-12">
-	{
-		jobs.map((job) => (
-			<li class="min-h-[140px]">
-				<div class="timeline-start text-sm text-neutral-content">{job.period}</div>
-				<div class="timeline-middle">
-					<div class="w-4 h-4 bg-primary rounded-full shadow-md shadow-primary/30" />
-				</div>
-				<div class="timeline-end timeline-box  bg-base-200 shadow-md border border-base-300">
-					<h3 class="text-lg font-semibold">{job.role}</h3>
-					<p class="text-sm text-gray-500 italic">{job.company}</p>
-					<p class="mt-2 text-sm leading-relaxed">{job.description}</p>
-				</div>
-				<hr />
-			</li>
-		))
-	}
-</ul>
+<section id="career" class="max-w-4xl mx-auto px-4 py-12">
+	<h2 class="text-3xl font-bold mb-4">Mon parcours professionnel</h2>
+	<ul class="timeline timeline-vertical px-6 py-12">
+		{
+			jobs.map((job) => (
+				<li class="min-h-[140px]">
+					<div class="timeline-start text-sm text-neutral-content">{job.period}</div>
+					<div class="timeline-middle">
+						<div class="w-4 h-4 bg-primary rounded-full shadow-md shadow-primary/30" />
+					</div>
+					<div class="timeline-end timeline-box  bg-base-200 shadow-md border border-base-300">
+						<h3 class="text-lg font-semibold">{job.role}</h3>
+						<p class="text-sm text-gray-500 italic">{job.company}</p>
+						<p class="mt-2 text-sm leading-relaxed">{job.description}</p>
+					</div>
+					<hr />
+				</li>
+			))
+		}
+	</ul>
+</section>

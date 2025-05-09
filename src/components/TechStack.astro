@@ -30,25 +30,28 @@ const icons = techs.map((tech) => ({
 }));
 ---
 
-<div class="flex flex-wrap justify-center gap-6 py-8">
-	{
-		icons.map(
-			({ name, icon }) =>
-				icon && (
-					<div class="flex flex-col items-center space-y-2 w-20">
-						<svg
-							role="img"
-							viewBox="0 0 24 24"
-							fill={`#${icon.hex}`}
-							class="w-12 h-12"
-							aria-label={name}
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path d={icon.path} />
-						</svg>
-						<span class="text-sm text-center">{name}</span>
-					</div>
-				)
-		)
-	}
-</div>
+<section id="techs" class="max-w-4xl mx-auto px-4 py-12">
+	<h2 class="text-3xl font-bold mb-4">Ma stack technique</h2>
+	<div class="flex flex-wrap justify-center gap-6 py-8">
+		{
+			icons.map(
+				({ name, icon }) =>
+					icon && (
+						<div class="flex flex-col items-center space-y-2 w-20">
+							<svg
+								role="img"
+								viewBox="0 0 24 24"
+								fill={`#${icon.hex}`}
+								class="w-12 h-12"
+								aria-label={name}
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d={icon.path} />
+							</svg>
+							<span class="text-sm text-center">{name}</span>
+						</div>
+					)
+			)
+		}
+	</div>
+</section>
