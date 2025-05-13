@@ -3,29 +3,31 @@
 ---
 
 <form id="contact-form" class="w-full max-w-lg grid gap-6 mt-8">
-	<label class="input w-full validator">
-		<span class="label"
-			><svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<div class="form-control">
+		<label class="label sr-only" for="name">Nom </label>
+		<div class="input flex items-center gap-2 w-full">
+			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 				<g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
 					<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
 					<circle cx="12" cy="7" r="4"></circle>
 				</g>
-			</svg></span
-		>
-		<input type="text" name="name" placeholder="Votre nom" required />
-	</label>
+			</svg>
+			<input id="name" type="text" name="name" placeholder="Votre nom" required />
+		</div>
+	</div>
 
-	<label class="input w-full">
-		<span class="label"
-			><svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<div class="form-control">
+		<label class="label sr-only" for="email">Email</label>
+		<div class="input flex items-center gap-2 w-full">
+			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 				<g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
 					<rect width="20" height="16" x="2" y="4" rx="2"></rect>
 					<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 				</g>
-			</svg></span
-		>
-		<input type="text" name="email" placeholder="Votre email" required />
-	</label>
+			</svg>
+			<input type="text" name="email" placeholder="Votre email" required />
+		</div>
+	</div>
 
 	<textarea name="message" rows="5" placeholder="Votre message" required class="textarea w-full"></textarea>
 	<button type="submit" class="btn btn-primary">Envoyer</button>

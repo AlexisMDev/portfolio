@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getIconBySlug } from "../lib/simpleIcons";
 import { getPlaceholderImages } from "../utils/getPlaceholderImages";
 
@@ -49,7 +50,13 @@ const projects = [
 			projects.map((project) => (
 				<div class="card bg-base-200 shadow-lg border border-base-300">
 					<figure>
-						<img src={project.image} alt={`aperçu de ${project.title}`} class="h-48 w-full object-cover" />
+						<Image
+							src={project.image}
+							alt={`aperçu de ${project.title}`}
+							width={100}
+							height={100}
+							class="h-48 w-full object-cover"
+						/>
 					</figure>
 					<div class="card-body">
 						<h3 class="card-title text-xl">{project.title}</h3>
