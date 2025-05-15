@@ -1,5 +1,6 @@
 import { initScrollSpy } from "../../src/utils/scrollSpy";
 import { animateOnScroll } from "../../src/utils/animateOnScroll";
+import { handleContactForm } from "../../src/utils/contactForms";
 
 document.addEventListener("DOMContentLoaded", () => {
 	initScrollSpy((id) => {
@@ -12,4 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	animateOnScroll();
+	handleContactForm();
 });

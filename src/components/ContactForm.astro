@@ -2,10 +2,16 @@
 
 ---
 
-<form id="contact-form" class="w-full max-w-lg grid gap-6 mt-8">
+<form id="contact-form" class="w-full max-w-lg grid gap-6 mt-8" action="https://formspree.io/f/xyzwlodo" method="POST">
+	<!-- Honeypot pour les bots -->
+	<input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+	<!-- Champ caché optionnel pour un sujet personnalisé -->
+	<input type="hidden" name="_subject" value="Nouveau message depuis le portfolio" />
+
 	<div class="form-control">
 		<label class="label sr-only" for="name">Nom </label>
-		<div class="input flex items-center gap-2 w-full">
+		<div class="input flex items-center gap-2 w-full validator">
 			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 				<g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
 					<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
@@ -18,20 +24,19 @@
 
 	<div class="form-control">
 		<label class="label sr-only" for="email">Email</label>
-		<div class="input flex items-center gap-2 w-full">
+		<div class="input flex items-center gap-2 w-full validator">
 			<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 				<g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
 					<rect width="20" height="16" x="2" y="4" rx="2"></rect>
 					<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 				</g>
 			</svg>
-			<input type="text" name="email" placeholder="Votre email" required />
+			<input type="email" name="email" placeholder="Votre email" required />
 		</div>
+		<div class="validator-hint">Saisir un email valide.</div>
 	</div>
 
 	<textarea name="message" rows="5" placeholder="Votre message" required class="textarea w-full"></textarea>
 	<button type="submit" class="btn btn-primary">Envoyer</button>
-	<p id="form-response" class="text-success hidden mt-4">
-		Merci pour votre message, je vous répondrai dans les plus brefs délais.
-	</p>
+	<p id="form-response" class="hidden"></p>
 </form>
