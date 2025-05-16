@@ -2,32 +2,34 @@
 import { getIconBySlug } from "../lib/simpleIcons";
 
 const techs = [
-	{ name: "Astro", slug: "astro" },
-	{ name: "React", slug: "react" },
-	{ name: "JavaScript", slug: "javascript" },
-	{ name: "TypeScript", slug: "typescript" },
+	{ name: "JavaScript", slug: "javascript", category: "Frontend" },
+	{ name: "TypeScript", slug: "typescript", category: "Frontend" },
+	{ name: "Astro", slug: "astro", category: "Frontend" },
+	{ name: "React", slug: "react", category: "Frontend" },
+	{ name: "TailwindCSS", slug: "tailwindcss", category: "Frontend" },
+	{ name: "DaisyUI", slug: "daisyui", category: "Frontend" },
+	{ name: "Bootstrap", slug: "bootstrap", category: "Frontend" },
 
-	{ name: "TailwindCSS", slug: "tailwindcss" },
-	{ name: "DaisyUI", slug: "daisyui" },
-	{ name: "Bootstrap", slug: "bootstrap" },
+	{ name: "Node.js", slug: "nodedotjs", category: "Backend" },
+	{ name: "Express", slug: "express", category: "Backend" },
+	{ name: "PHP", slug: "php", category: "Backend" },
 
-	{ name: "Node.js", slug: "nodedotjs" },
-	{ name: "Express", slug: "express" },
-	{ name: "PHP", slug: "php" },
+	{ name: "MySQL", slug: "mysql", category: "Base de données" },
+	{ name: "MariaDB", slug: "mariadb", category: "Base de données" },
+	{ name: "PostgreSQL", slug: "postgresql", category: "Base de données" },
 
-	{ name: "MySQL", slug: "mysql" },
-	{ name: "MariaDB", slug: "mariadb" },
-	{ name: "PostgreSQL", slug: "postgresql" },
-
-	{ name: "Git", slug: "git" },
-	{ name: "Docker", slug: "docker" },
-	{ name: "GitHub Actions", slug: "githubactions" },
+	{ name: "Git", slug: "git", category: "Outils / CI-CD" },
+	{ name: "Docker", slug: "docker", category: "Outils / CI-CD" },
+	{ name: "GitHub Actions", slug: "githubactions", category: "Outils / CI-CD" },
 ];
 
 const icons = techs.map((tech) => ({
 	...tech,
 	icon: getIconBySlug(tech.slug),
 }));
+
+// Regrouper par catégories
+const groupedTechs = [...new Set(techs.map((tech) => tech.category))];
 ---
 
 <section
@@ -35,26 +37,34 @@ const icons = techs.map((tech) => ({
 	class="min-h-screen max-w-4xl mx-auto px-4 py-12 reveal opacity-0 translate-y-4 transition-all duration-700"
 >
 	<h2 class="text-3xl font-bold mb-4">Ma stack technique</h2>
-	<div class="flex flex-wrap justify-center gap-6 py-8">
-		{
-			icons.map(
-				({ name, icon }) =>
-					icon && (
-						<div class="flex flex-col items-center space-y-2 w-20">
-							<svg
-								role="img"
-								viewBox="0 0 24 24"
-								fill={`#${icon.hex}`}
-								class="w-12 h-12"
-								aria-label={name}
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path d={icon.path} />
-							</svg>
-							<span class="text-sm text-center">{name}</span>
-						</div>
-					)
-			)
-		}
-	</div>
+	{
+		groupedTechs.map((category) => (
+			<div class="mt-8">
+				<h3 class="text-2xl font-semibold mb-4">{category}</h3>
+				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+					{icons
+						.filter((tech) => tech.category === category)
+						.map(
+							({ name, icon }) =>
+								icon && (
+									<div class="flex items-center gap-3 p-3 hover:scale-105 transition">
+										<svg
+											role="img"
+											viewBox="0 0 24 24"
+											fill={`#${icon.hex}`}
+											class="w-12 h-12"
+											aria-label={name}
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path d={icon.path} />
+										</svg>
+										<span class="text-sm text-center">{name}</span>
+									</div>
+								)
+						)}
+				</div>
+			</div>
+		))
+	}
+	<!-- </div> -->
 </section>
