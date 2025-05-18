@@ -1,6 +1,6 @@
-import { initScrollSpy } from "../../src/utils/scrollSpy";
-import { animateOnScroll } from "../../src/utils/animateOnScroll";
-import { handleContactForm } from "../../src/utils/contactForms";
+import { initScrollSpy } from "../utils/scrollSpy";
+import { animateOnScroll } from "../utils/animateOnScroll";
+import { handleContactForm } from "../utils/contactForms";
 
 document.addEventListener("DOMContentLoaded", () => {
 	initScrollSpy((id) => {
