@@ -1,0 +1,90 @@
+<script type="module" client:load>
+	const animateOnScroll = () => {
+		const elements = document.querySelectorAll(".reveal");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const { classList } = entry.target;
+						classList.add("opacity-100", "translate-y-0");
+						classList.remove("opacity-0", "translate-y-4");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{
+				threshold: 0.1,
+			}
+		);
+
+		elements.forEach((el) => observer.observe(el));
+	};
+
+	const initScrollSpy = (callback) => {
+		const sections = document.querySelectorAll("section[id]");
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const id = entry.target.getAttribute("id");
+						if (id) callback(id);
+					}
+				});
+			},
+			{
+				rootMargin: "-50% 0px -50% 0px",
+				threshold: 0,
+			}
+		);
+
+		sections.forEach((section) => observer.observe(section));
+	};
+
+	const handleContactForm = (formSelector = "#contact-form") => {
+		const form = document.querySelector(formSelector);
+		const responseMessage = document.getElementById("form-response");
+
+		if (!form || !responseMessage) return;
+
+		form.addEventListener("submit", async (evt) => {
+			evt.preventDefault();
+
+			const formData = new FormData(form);
+
+			try {
+				const res = await fetch("https://formspree.io/f/xyzwlodo", {
+					method: "POST",
+					headers: { Accept: "application/json" },
+					body: formData,
+				});
+
+				if (res.ok) {
+					form.reset();
+					responseMessage.textContent = "✅ Merci pour votre message, je vous répondrai dans les plus brefs délais.";
+					responseMessage.className = "text-success mt-4";
+				} else {
+					const data = await res.json();
+					responseMessage.textContent = data?.error || "❌ Une erreur est survenue.";
+					responseMessage.className = "text-error mt-4";
+				}
+			} catch {
+				responseMessage.textContent = "❌ Erreur réseau. Réessayez plus tard.";
+				responseMessage.className = "text-error mt-4";
+			}
+		});
+	};
+
+	document.addEventListener("DOMContentLoaded", () => {
+		initScrollSpy((id) => {
+			document.querySelectorAll("#navbar a").forEach((item) => {
+				item.classList.remove("font-bold", "bg-primary");
+				if (item.getAttribute("href") === `#${id}`) {
+					item.classList.add("font-bold", "bg-primary");
+				}
+			});
+		});
+		animateOnScroll();
+		handleContactForm();
+	});
+</script>
