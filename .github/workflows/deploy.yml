@@ -1,0 +1,41 @@
+name: Déploiement sur le VPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Installation des dépendances
+        run: npm install
+
+      - name: Build projet Astro
+        run: npm run build
+
+      - name: Configuration SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.VPS_PORT }} -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
+
+      - name: Synchronisation des fichiers vers le VPS
+        run: rsync -avz --delete ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ secrets.PROJECT_PATH }}
+
+      - name: Rebuild et redémarrage du conteneur Docker sur le VPS
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+            cd ${{secrets.PROJECT_PATH}}
+            docker compose -f docker-compose.yml down
+            docker compose -f docker-compose.yml up -d --build
+          EOF
