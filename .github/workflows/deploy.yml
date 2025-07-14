@@ -30,11 +30,14 @@ jobs:
           ssh-keyscan -p ${{ secrets.VPS_PORT }} -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
 
       - name: Synchronisation des fichiers vers le VPS
-        run: rsync -avz --delete ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ secrets.PROJECT_PATH }}
+        run: |
+          rsync -avz --delete \
+          -e "ssh -p ${{ secrets.VPS_PORT }}" \
+          ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:${{ secrets.PROJECT_PATH }}
 
       - name: Rebuild et redémarrage du conteneur Docker sur le VPS
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+          ssh -p ${{ secrets.VPS_PORT }} -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
             cd ${{secrets.PROJECT_PATH}}
             docker compose -f docker-compose.yml down
             docker compose -f docker-compose.yml up -d --build
