@@ -10,8 +10,8 @@ const navItems = [
 ];
 ---
 
-<nav id="navbar" class="fixed top-0 left-0 w-full bg-base-100 z-50 shadow-md">
-	<div class="max-w-6xl mx-auto px-4 navbar">
+<nav id="navbar" class="navbar fixed top-0 left-0 w-full bg-base-100 z-50 shadow-md">
+	<!-- <div class="max-w-6xl mx-auto px-4 navbar">
 		<div class="flex-1">
 			<a href="/" class="btn btn-ghost text-xl">Mon Portfolio</a>
 		</div>
@@ -26,6 +26,40 @@ const navItems = [
 				}
 			</ul>
 			<ThemeToggle />
+		</div> -->
+	<div class="navbar-start">
+		<div class="flex-1">
+			<a href="/" class="btn btn-ghost text-xl">Mon Portfolio</a>
 		</div>
+	</div>
+	<div class="navbar-center hidden lg:flex">
+		<ul class="menu menu-horizontal px-1">
+			{
+				navItems.map((item) => (
+					<li>
+						<a href={item.href}>{item.label}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<div class="navbar-end">
+		<div class="dropdown">
+			<div class="btn btn-sm btn-ghost lg:hidden" tabindex={0} role="button">
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+				</svg>
+			</div>
+			<ul class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1shadow">
+				{
+					navItems.map((item) => (
+						<li class="px-2 py-1">
+							<a href={item.href}>{item.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<ThemeToggle />
 	</div>
 </nav>
