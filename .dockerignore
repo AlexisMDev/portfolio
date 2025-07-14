@@ -1,0 +1,35 @@
+# Dépendances locales
+node_modules
+**/node_modules
+
+# Dépendances lockfiles optionnels (si pas utilisés)
+pnpm-lock.yaml
+yarn.lock
+
+# Fichiers temporaires
+dist
+.cache
+.astro
+.vite
+coverage
+*.log
+*.tmp
+*.swp
+
+# Fichiers OS
+.DS_Store
+Thumbs.db
+
+# Configs et IDE
+.env
+.env.*
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
+
+# Autres fichiers non nécessaires
+README.md
+docker-compose.override.yml
